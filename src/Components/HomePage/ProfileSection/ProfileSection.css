@@ -1,0 +1,9 @@
+.ImageContainer{
+    display:flex;
+    justify-content: end;
+    width:auto;
+    height:auto;
+    border:2px solid gray;
+    border-radius:5px;
+    overflow:hidden;
+}

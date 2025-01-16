@@ -1,0 +1,32 @@
+
+.HomepageHeader{
+    width:auto;
+    height:150px;
+    background-color:deepskyblue;
+    color: black;
+    align-items: center;
+    justify-content: space-between;
+    display:flex;
+    font-size: 40px;
+    position:relative;
+    top: 0;
+    left: 0;
+    border-style:solid;
+    border-color: gray;
+    border-radius:5px;
+    margin: 15px;
+}
+.HomepageMain{
+    width:auto;
+    height: 50000px;
+    background-color: green;
+    font-size: 30px;
+    display:flex;
+    justify-content: start;
+    align-items: center;
+    border-style: solid;
+    border-color: gray;
+    border-radius:5px;
+    margin:30px;
+}
+
