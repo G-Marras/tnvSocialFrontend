@@ -1,4 +1,4 @@
-import React from 'react'
+import {useState} from 'React'
 import "./ReimpostaPassword.css"
 
 export const ReimpostaPassword = () => {
