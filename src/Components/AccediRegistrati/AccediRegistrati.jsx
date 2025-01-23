@@ -7,14 +7,15 @@ export function AccediRegistrati() {
     const [password, setPassword] = useState("")
     const [email, setEmail] = useState("")
     const [message, setMessage] = useState("")
-    const [messagEmail, setMessageEmail] = useState("")
+    const [messageEmail, setMessageEmail] = useState("")
+    const [displayName, setDisplayName] = useState("")
+    const [displaySurname, setDisplaySurname] = useState("")
 
     const onLogin = (event) => {
         event.preventDefault()
         if (action === "Accedi") {
             handleValidationMail(email)
             handleValidationPassword(password)
-        } else {
             setAction("Accedi")
         }
     }
@@ -23,6 +24,9 @@ export function AccediRegistrati() {
         if (action === "Registrati") {
             handleValidationMail(email)
             handleValidationPassword(password)
+            if(handleValidationMail(email) === true && handleValidationPassword(password)) {
+                 createUser()
+            }
         } else {
             setAction("Registrati")
         }
@@ -33,27 +37,32 @@ export function AccediRegistrati() {
         console.log(regExp.test(password))
         if (password === "") {
             setMessage("Password mancante")
+            return false;
         } else {
             if (regExp.test(password)) {
                 setMessage("Password valida")
+                return true;
             } else {
                 setMessage("Password non valida")
                 setPassword("")
+                return false;
             }
         }
-
     }
 
     const handleValidationMail = () => {
         const regExm = /[a-zA-Z0-9._%+-]+@[a-z0-9]+\.[a-z]{2,8}(.[a-z]{2,8})?/g
         if (email === "") {
             setMessageEmail("Email mancante")
+            return false;
         } else {
             if (regExm.test(email)) {
                 setMessageEmail("Email valida")
+                return true;
             } else {
                 setMessageEmail("Email non valida")
                 setEmail("")
+                return false;
             }
         }
     }
@@ -62,8 +71,37 @@ export function AccediRegistrati() {
         setEmail(event.target.value)
     }
 
-    function passwordChange(valid) {
-        setPassword(valid.target.value)
+    function passwordChange(event) {
+        setPassword(event.target.value)
+    }
+
+    function nameChange(event){
+        setDisplayName(event.target.value)
+    }
+
+    function surnameChange(event){
+        setDisplaySurname(event.target.value)
+    }
+
+    const createUser = async () => {
+        try{
+           const request = await fetch('http://localhost:8000/user/',{
+               method: 'POST',
+               headers:{
+                   'Content-Type': 'application/json'
+               },
+               body: JSON.stringify(displayName, displaySurname, email, password),
+            });
+           if (request.ok){
+               throw new Error('Errore durante la creazione dell utente');
+           }
+           
+           const data = await request.json();
+           return data;
+        } catch (error){
+            console.error('Errore', error);
+            throw error
+        }
     }
 
 
@@ -74,16 +112,25 @@ export function AccediRegistrati() {
                 <div className='underline'></div>
             </div>
             <div className="inputs"></div>
-
+            {action === "Accedi" ? <div></div> :
+            <div className="input">
+                <input type="name" placeholder="Nome" onChange={nameChange} value={displayName}/>
+            </div>}
+            <p></p>
+            {action === "Accedi" ? <div></div> :
+            <div className="input">
+                <input type="surname" placeholder="Cognome" onChange={surnameChange} value={displaySurname}/>
+            </div>}
+            <p></p>
             <div className="input">
                 <input type="email" placeholder="Mail" onChange={mailChange} value={email}/>
             </div>
-            <p>{messagEmail}</p>
+            <p>{messageEmail}</p>
             <div className="input">
                 <input type="password" placeholder="Password" onChange={passwordChange} value={password}/>
             </div>
             <p>{message}</p>
-            {action === "Registrati" ? <div className="vuoto">ciao :)</div> :
+            {action === "Registrati" ? <div></div> :
                 <div className="forgot-password"><span>Password dimenticata?</span></div>}
             <div className="submit-container">
                 <button className={action === "Accedi" ? "submit gray" : "submit"} onClick={onRegistration}>Registrati
