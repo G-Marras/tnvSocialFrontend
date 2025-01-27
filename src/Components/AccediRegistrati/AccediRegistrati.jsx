@@ -1,5 +1,6 @@
 import {useState} from "react";
 import './AccediRegistrati.css'
+import {ConfermaRegistrazione} from "../ConfermaRegistrazione/ConfermaRegistrazione.jsx";
 
 export function AccediRegistrati() {
 
@@ -10,12 +11,14 @@ export function AccediRegistrati() {
     const [messageEmail, setMessageEmail] = useState("")
     const [displayName, setDisplayName] = useState("")
     const [displaySurname, setDisplaySurname] = useState("")
+    const [buttonPopup, setButtonPopup] = useState(true);
 
     const onLogin = (event) => {
         event.preventDefault()
         if (action === "Accedi") {
             handleValidationMail(email)
             handleValidationPassword(password)
+        }else {
             setAction("Accedi")
         }
     }
@@ -24,7 +27,7 @@ export function AccediRegistrati() {
         if (action === "Registrati") {
             handleValidationMail(email)
             handleValidationPassword(password)
-            if(handleValidationMail(email) === true && handleValidationPassword(password)) {
+            if(handleValidationMail(email) === true && handleValidationPassword(password) === true) {
                  createUser()
             }
         } else {
@@ -85,15 +88,20 @@ export function AccediRegistrati() {
 
     const createUser = async () => {
         try{
-           const request = await fetch('http://localhost:8000/user/',{
+           const request = await fetch('http://localhost:8000/user',{
                method: 'POST',
                headers:{
                    'Content-Type': 'application/json'
                },
-               body: JSON.stringify(displayName, displaySurname, email, password),
+               body: JSON.stringify({
+                   displayName:displayName,
+                   displaySurname:displaySurname,
+                   email:email,
+                   password:password
+               }),
             });
            if (request.ok){
-               throw new Error('Errore durante la creazione dell utente');
+               throw new Error('Errore utente già registrato');
            }
            
            const data = await request.json();

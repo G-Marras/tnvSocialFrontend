@@ -1,7 +1,16 @@
-import React from 'react'
+import {useState} from 'react'
 import "./PasswordDimenticata.css"
 
 export const PasswordDimenticata = () => {
+
+    const [email, setEmail] = useState("")
+
+    function mailChange(event){
+        setEmail(event.target.value)
+    }
+
+    //da fare controllo se mail presente nel database per poi mandare la mail per reimpostare la password
+
     return (
         <form className='container'>
             <div className='header'>
@@ -10,7 +19,7 @@ export const PasswordDimenticata = () => {
             </div>
             <div className="inputs"></div>
             <div className="input">
-                <input type="email" placeholder="Mail"/>
+                <input type="email" placeholder="Mail" onChange={mailChange} value={email}/>
             </div>
             <div className="submit-container">
                 <button className="submit">Conferma</button>
