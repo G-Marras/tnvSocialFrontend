@@ -1,0 +1,12 @@
+
+.buttonGuestToTheLogin{
+    width:250px;
+    height:60px;
+    position: sticky;
+    padding: 10px 20px;
+    border-radius:5px;
+    border-color:white;
+    color:white;
+    background: #4c00b4;
+}
+

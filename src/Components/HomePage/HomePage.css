@@ -1,0 +1,50 @@
+
+.HomepageHeader{
+    width:auto;
+    height:150px;
+    background-color:WHITE;
+    padding:20px;
+    align-items: center;
+    justify-content: center;
+    display:flex;
+    font-size: 30px;
+    position:relative;
+    top: 0;
+    left: 0;
+    border-style:solid;
+    border-color: black;
+    border-radius:10px;
+    margin: 15px;
+}
+.HomepageMain{
+    width:1000px;
+    height: 50000px;
+    color:black;
+    background-color: white;
+    display:flex;
+    justify-content: start;
+    align-items: start;
+    border-style: solid;
+    border-color: black;
+    border-radius:10px;
+    margin:30px;
+    font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+    line-height: 1.5;
+    font-weight: 400;
+}
+
+.FixedProfile{
+    width:auto;
+    height:150px;
+    background-color:white;
+    padding:20px;
+    align-items: center;
+    justify-content: center;
+    position:fixed;
+    right:20px;
+    top:30px;
+    border-style:solid;
+    border-color: black;
+    border-radius:10px;
+    margin: 15px;
+}
