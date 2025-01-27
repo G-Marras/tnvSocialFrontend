@@ -1,14 +1,11 @@
-import React from 'react';
+
 
 import './HomePage.css';
 import './PostSection/PostSection.jsx';
-import './CommentSection/CommentSection.jsx';
-import './ProfileSection/ProfileSection.jsx';
-import './Buttons/ButtonGuestToTheLogin.jsx';
-import './PostSection/PostSection.jsx';
 import ButtonGuestToTheLogin from "./Buttons/ButtonGuestToTheLogin.jsx";
-import ButtonCreazionePost from "./Buttons/ButtonCreazionePost.jsx";
 import ProfileSection from "./ProfileSection/ProfileSection.jsx";
+import ButtonCreazionePost from "./Buttons/ButtonCreazionePost.jsx";
+
 
 const Loggato = true;
 
@@ -18,18 +15,26 @@ function HomePage() {
         <div>
 
             {
-                Loggato ? <p>
+                Loggato ? <div>
                     <div className='HomepageHeader'>
                         <h1>Welcome back </h1>
-                        <ProfileSection />
                     </div>
-                    <ButtonCreazionePost></ButtonCreazionePost>
-                </p> : <p>
+                    <div className='FixedProfile'>
+                        <ProfileSection/>
+                        <ButtonCreazionePost/>
+                    </div>
+
+                </div> : <div>
                     <div className='HomepageHeader'>
                         <h1>Welcome</h1>
+                    </div>
+                    <div className='FixedProfile'>
+                        Per commentare e creare post
+                        <br/>
                         <ButtonGuestToTheLogin></ButtonGuestToTheLogin>
                     </div>
-                </p>
+
+                </div>
             }
             <div className='HomepageMain'>
                 Qua si caricano i post vari

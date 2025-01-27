@@ -1,9 +1,11 @@
+
 import './ButtonGuestToTheLogin.css'
 
+
 function ButtonGuestToTheLogin() {
+
     return (
-        <button className='buttonGuestToTheLogin' onClick={() => {
-        }}>
+        <button className='buttonGuestToTheLogin' >
             Entra a far parte della community
         </button>
     )

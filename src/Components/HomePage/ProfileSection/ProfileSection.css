@@ -1,9 +1,9 @@
 .ImageContainer{
     display:flex;
-    justify-content: end;
+    justify-content: center;
     width:auto;
     height:auto;
-    border:2px solid gray;
+    border:2px solid black;
     border-radius:5px;
     overflow:hidden;
 }

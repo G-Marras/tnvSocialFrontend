@@ -1,9 +1,12 @@
 import './ProfileSection.css'
-import React from "react";
 
 function ProfileSection() {
     return (
-        <div className='ImageContainer'> nome utente + foto</div>
+        <>
+            <div className='ProfileHeader'>Attualmente loggato come</div>
+            <div className='UserNameContainer'>*Nome profilo*</div>
+            <div className='ImageContainer'>*Foto profilo*</div>
+        </>
     )
 }
 
