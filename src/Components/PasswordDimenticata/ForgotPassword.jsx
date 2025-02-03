@@ -1,7 +1,8 @@
 import {useState} from 'react'
-import "./PasswordDimenticata.css"
+import "./ForgotPassword.css"
+import {Outlet} from "react-router-dom";
 
-export const PasswordDimenticata = () => {
+export const ForgotPassword = () => {
 
     const [email, setEmail] = useState("")
 
@@ -24,6 +25,7 @@ export const PasswordDimenticata = () => {
             <div className="submit-container">
                 <button className="submit">Conferma</button>
             </div>
+            <Outlet />
         </form>
     )
 }

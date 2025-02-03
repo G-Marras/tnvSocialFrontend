@@ -1,7 +1,7 @@
 import {useState} from 'React'
-import "./ReimpostaPassword.css"
+import "./ResetPassword.css"
 
-export const ReimpostaPassword = () => {
+export const ResetPassword = () => {
 
     const [newPassword, setNewPassword] = useState("")
     const [confirmPassword, setConfirmPassword] = useState("")

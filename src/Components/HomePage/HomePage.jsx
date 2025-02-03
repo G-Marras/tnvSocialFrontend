@@ -5,6 +5,7 @@ import './PostSection/PostSection.jsx';
 import ButtonGuestToTheLogin from "./Buttons/ButtonGuestToTheLogin.jsx";
 import ProfileSection from "./ProfileSection/ProfileSection.jsx";
 import ButtonCreazionePost from "./Buttons/ButtonCreazionePost.jsx";
+import {Outlet} from "react-router-dom";
 
 
 const Loggato = true;
@@ -39,6 +40,7 @@ function HomePage() {
             <div className='HomepageMain'>
                 Qua si caricano i post vari
             </div>
+            <Outlet />
         </div>
 
 
