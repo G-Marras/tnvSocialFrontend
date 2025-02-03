@@ -1,5 +1,5 @@
 import {useState} from "react";
-import {useParams} from "react-router-dom";
+import {useNavigate, useParams} from "react-router-dom";
 import {useEffect} from 'react';
 
 
@@ -7,6 +7,7 @@ export function GetRegistrationToken() {
     const [message, setMessage] = useState("");
     const [hasConfirmed, setHasConfirmed] = useState(false);
     const { id, registrationToken } = useParams();
+    const navigate = useNavigate();
 
     const confirmRegistration = async() => {
         if (hasConfirmed) return
@@ -17,7 +18,6 @@ export function GetRegistrationToken() {
                     'Content-Type' : 'application/json'
                 },
             });
-            console.log(response)
             const  data = await response.json();
             if (response.ok){
                 setMessage("Registrazione confermata con successo")
@@ -37,8 +37,20 @@ export function GetRegistrationToken() {
         confirmRegistration();
     }, [id, registrationToken]);
 
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            navigate('/authentication');
+        }, 5000);
+        return () => clearTimeout(timer);
+    }, [navigate]);
+
+
+
     return(
-        <div className="container"><p>{message}</p></div>
+        <div className="container">
+            <h1>{message}</h1>
+            <p>stai per essere reindirizzato alla pagina di autenticazione in 5 secondi</p>
+        </div>
     )
 
 

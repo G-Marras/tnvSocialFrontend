@@ -1,11 +1,14 @@
 import {useState} from 'React'
-import "./ResetPassword.css"
+import "./UpdatePassword.css"
+import {useNavigate, useParams} from "react-router-dom";
 
-export const ResetPassword = () => {
+export const UpdatePassword = () => {
 
     const [newPassword, setNewPassword] = useState("")
     const [confirmPassword, setConfirmPassword] = useState("")
     const [errorMessage, setErrorMessage] = useState("")
+    const { id, registrationToken } = useParams();
+    const navigate = useNavigate();
 
 
     function newPasswordChange(event){
@@ -21,14 +24,12 @@ export const ResetPassword = () => {
         const regExp = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[a-zA-Z0-9]{8,}$/
         console.log(regExp.test(newPassword))
         if (newPassword === "") {
-            setErrorMessage("inserisci password")
             return false;
         } else {
             if (regExp.test(newPassword)) {
                 setErrorMessage("")
                 return true;
             } else {
-                setErrorMessage("password non valida")
                 setNewPassword("")
                 return false;
             }
@@ -38,13 +39,38 @@ export const ResetPassword = () => {
     const samePassword =(event) =>{
         event.preventDefault()
         if (newPassword === confirmPassword){
-            //
-        }else {
-
+            passwordUpdate()
+            navigate('/authentication')
+        } else {
+            setErrorMessage("le password non coincidono")
+            setNewPassword("")
+            setConfirmPassword("")
         }
     }
 
-    //da fare, on click per il bottone che ti reimposta la password e ti riporta alla pagina di login
+    const passwordUpdate = async() => {
+        try{
+            console.log(id, registrationToken)
+            const response = await fetch(`http://localhost:8000/user/${id}/updatePassword/`,{
+                method:'PATCH',
+                headers:{
+                    'Content-Type' : 'application/json'
+                },
+                body: JSON.stringify({
+                    password: newPassword,
+                    registrationToken: registrationToken,
+                }),
+            });
+            console.log(response)
+            const  data = await response.json();
+            if (response.ok){
+                return data
+            }
+        } catch (error){
+            console.error('Error', error);
+            throw  error
+        }
+    }
 
 
     return (
@@ -63,7 +89,7 @@ export const ResetPassword = () => {
                        value={confirmPassword}/>
             </div>
             <div className="submit-container">
-                <button className="submit">Reimposta</button>
+                <button className="submit" onClick={samePassword}>Reimposta</button>
             </div>
         </form>
     )

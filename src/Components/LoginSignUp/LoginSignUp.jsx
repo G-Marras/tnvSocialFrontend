@@ -1,6 +1,8 @@
 import {useState} from "react";
 import './LoginSignUp.css'
-import {Outlet} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
+import {useDispatch} from "react-redux";
+import {setUser} from "../../reducers/user.slices.js";
 
 export function LoginSignUp() {
 
@@ -12,6 +14,8 @@ export function LoginSignUp() {
     const [displayName, setDisplayName] = useState("")
     const [displaySurname, setDisplaySurname] = useState("")
     const [registrationMessage, setRegistrationMessage] = useState("")
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
 
 
     const onLogin = (event) => {
@@ -20,7 +24,8 @@ export function LoginSignUp() {
             handleValidationMail(email)
             handleValidationPassword(password)
             if (handleValidationMail(email) === true && handleValidationPassword(password) === true){
-                loginUser()
+                loginUser(event)
+                navigate('/homepage')
             }
         }else {
             setAction("Accedi")
@@ -41,7 +46,6 @@ export function LoginSignUp() {
 
     const handleValidationPassword = () => {
         const regExp = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[a-zA-Z0-9]{8,}$/
-        console.log(regExp.test(password))
         if (password === "") {
             setMessage("Password mancante")
             return false;
@@ -116,7 +120,7 @@ export function LoginSignUp() {
         }
     }
 
-    const loginUser = async () => {
+    const login = async () => {
         try{
             const response = await fetch('http://localhost:8000/user/login',{
                 method: 'POST',
@@ -137,6 +141,21 @@ export function LoginSignUp() {
             throw error
         }
     }
+
+    const loginUser = async (event) => {
+        event.preventDefault();
+
+        const payload = {
+            email: email,
+            password: password,
+        }
+
+        const res = await login(payload)
+        if (res) {
+            dispatch(setUser(res));
+        }
+    }
+
 
 
     return (
@@ -165,13 +184,12 @@ export function LoginSignUp() {
             </div>
             <p>{message}</p>
             {action === "Registrati" ? <div></div> :
-                <div className="forgot-password"><span>Password dimenticata?</span></div>}
+                <div className="forgot-password"><Link to={'/forgotpassword'}>Password dimenticata?</Link></div>}
             <div className="submit-container">
                 <button className={action === "Accedi" ? "submit gray" : "submit"} onClick={onRegistration}>Registrati
                 </button>
                 <button className={action === "Registrati" ? "submit gray" : "submit"} onClick={onLogin}>Accedi</button>
             </div>
-            <Outlet />
             <div>
                 <p>{registrationMessage}</p>
             </div>
