@@ -1,13 +1,16 @@
-.ContenitoreTitolo{
 
-}
 
-.ContenitoreImmagine{
-
-}
 
 .ContenitoreCorpoPost{
-
+    width:500px;
+    height:100px;
+    border-radius:20px;
+    border:1px solid black;
+    box-shadow: 1px 1px 1px black;
+    resize:none;
+    justify-content: start;
+    padding:20px;
+    font-size:18px;
 }
 
 .TitoloPost{

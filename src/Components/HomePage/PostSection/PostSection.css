@@ -1,0 +1,80 @@
+.PostSection {
+    width: 100%;
+    height: auto;
+    border: 1px solid black;
+    border-radius: 10px;
+    padding: 10px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+}
+
+.SinglePostContainer{
+    width:100%;
+    height:auto;
+    border: 1px solid black;
+    border-radius: 10px;
+    padding :10px;
+    box-sizing: border-box;
+    display: flex;
+    margin-bottom: 20px;
+    flex-direction: column;
+}
+
+.PostSectionHeader{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    gap: 5px;
+
+}
+
+.PostSectionImage{
+    display: flex;
+    border: 1px solid black;
+    max-height: 500px;
+}
+
+.PostSectionContent{
+    display: flex;
+}
+
+.Counters {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 10px;
+    box-sizing: border-box;
+    margin-top: 10px;
+}
+
+.Likes, .Comments {
+    padding: 0 10px;
+    text-align: center;
+}
+
+.CommentSection{
+    width: inherit;
+    box-sizing: border-box;
+}
+
+.AccordionButtonToggle{
+    width: 100%;
+    padding: 10px;
+    text-align: center;
+    border: none;
+    cursor: pointer;
+}
+
+.SingleComment{
+    border: 1px solid black;
+}
+
+
+.CommentingUser{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+
+}

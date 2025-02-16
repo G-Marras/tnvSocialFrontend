@@ -15,14 +15,15 @@
     border-color: black;
     border-radius:10px;
     margin: 15px;
+
 }
 .HomepageMain{
     width:1000px;
-    height: 50000px;
+    height: auto;
     color:black;
     background-color: white;
-    display:flex;
-    justify-content: start;
+    display: flex;
+    flex-direction: column;
     align-items: start;
     border-style: solid;
     border-color: black;
@@ -31,6 +32,7 @@
     font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
     line-height: 1.5;
     font-weight: 400;
+
 }
 
 .FixedProfile{
@@ -47,4 +49,5 @@
     border-color: black;
     border-radius:10px;
     margin: 15px;
+
 }

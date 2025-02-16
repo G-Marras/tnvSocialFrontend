@@ -5,9 +5,10 @@ import './PostSection/PostSection.jsx';
 import ButtonGuestToTheLogin from "./Buttons/ButtonGuestToTheLogin.jsx";
 import ProfileSection from "./ProfileSection/ProfileSection.jsx";
 import ButtonCreazionePost from "./Buttons/ButtonCreazionePost.jsx";
+import PostSection from "./PostSection/PostSection.jsx";
 
 
-const Loggato = true;
+const Loggato = false;
 
 
 function HomePage() {
@@ -37,7 +38,7 @@ function HomePage() {
                 </div>
             }
             <div className='HomepageMain'>
-                Qua si caricano i post vari
+                <PostSection/>
             </div>
         </div>
 

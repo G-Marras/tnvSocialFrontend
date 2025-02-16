@@ -1,4 +1,4 @@
-.PopupCreazionePost {
+.PopupPostCreate {
     position: fixed;
     top: 0;
     left: 0;
@@ -9,9 +9,10 @@
     justify-content: center;
     align-items: center;
     border-radius :15px;
+    border: 1px black solid;
 }
 
-.PopupContenuto{
+.PopupBody{
     position:relative;
     padding:32px;
     width:100%;
@@ -19,7 +20,7 @@
     background-color:white;
 }
 
-.PopupContenuto .buttonChiusuraPopup{
+.PopupBody .buttonClosingPopup{
     position:absolute;
     top:16px;
     right:16px;

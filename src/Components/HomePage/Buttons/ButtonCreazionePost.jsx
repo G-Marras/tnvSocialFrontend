@@ -1,8 +1,9 @@
 import React from "react";
 import { useState } from "react";
 import './ButtonCreazionePost.css'
-import PopupCreazionePost from "../PopupCreazionePost/PopupCreazionePost.jsx";
-import CreazionePost from "../CreazionePost/CreazionePost.jsx";
+
+import PostCreation from "../PostCreation/PostCreation.jsx";
+import PopupPostCreate from "../PopupPostCreation/PopupCreatePost.jsx";
 
 
 function ButtonCreazionePost() {
@@ -11,9 +12,9 @@ function ButtonCreazionePost() {
     return (
         <div>
             <button className='buttonCreazionePost' onClick={() => setButtonPopup(true)}>Creazione Post</button>
-            <PopupCreazionePost trigger={buttonPopup} setTrigger={setButtonPopup} >
-                <CreazionePost  />
-            </PopupCreazionePost>
+            <PopupPostCreate trigger={buttonPopup} setTrigger={setButtonPopup} >
+                <PostCreation/>
+            </PopupPostCreate>
         </div>
 
     )
