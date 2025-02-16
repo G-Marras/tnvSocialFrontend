@@ -6,37 +6,43 @@ import ButtonCreationPost from "./Buttons/ButtonCreationPost.jsx"
 import PostSection from "./PostSection/PostSection.jsx"
 
 
-const Logged = false
+const Logged = true
+
+
+
 
 
 function HomePage() {
     return (
-        <div>
-            <nav className='navigationBar'>
+        <div className="HomePageContainer">
 
-            </nav>
+
 
             {Logged ?
                 <div>
-                    <div className='HomepageHeader'>
-                        <h1>Welcome back </h1>
-                    </div>
-                    <div className='FixedProfile'>
-                        <ProfileSection/>
-                        <ButtonCreationPost/>
-                    </div>
-
+                    <nav className='navigationBar'>
+                        <div className='MindShareLogo'>
+                            Image here
+                        </div>
+                        <div className='FixedProfile'>
+                            <ProfileSection/>
+                            <ButtonCreationPost/>
+                        </div>
+                    </nav>
                 </div>
                 :
                 <div>
-                    <div className='HomepageHeader'>
-                        <h1>Welcome</h1>
-                    </div>
-                    <div className='FixedProfile'>
-                        To create a post & to write a comment
-                        <br/>
-                        <ButtonGuestToTheLogin></ButtonGuestToTheLogin>
-                    </div>
+                    <nav className='navigationBar'>
+                    <div className='MindShareLogo'>
+                            Image here
+                        </div>
+
+                        <div className='FixedProfile'>
+                            To create a post & to write a comment
+                            <ButtonGuestToTheLogin></ButtonGuestToTheLogin>
+                        </div>
+                    </nav>
+
 
                 </div>
             }
@@ -44,8 +50,6 @@ function HomePage() {
                 <PostSection/>
             </div>
         </div>
-
-
 
 
     )

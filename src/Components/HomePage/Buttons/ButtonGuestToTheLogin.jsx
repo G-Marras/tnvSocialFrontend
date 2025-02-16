@@ -6,7 +6,7 @@ function ButtonGuestToTheLogin() {
 
     return (
         <button className='buttonGuestToTheLogin' >
-            Entra a far parte della community
+            Sign up / Login
         </button>
     )
 }
