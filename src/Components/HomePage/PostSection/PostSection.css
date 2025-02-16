@@ -29,6 +29,11 @@
 
 }
 
+.PostSectionHeaderTitle{
+    display: flex;
+    align-items: start;
+}
+
 .PostSectionImage{
     display: flex;
     border: 1px solid black;

@@ -76,11 +76,20 @@ function PostSection() {
             {posts.map(post => (
                 <div key={post.id} className='SinglePostContainer'>
                     <div className='PostSectionHeader'>
-                        {post.title} {post.owner.name} {post.owner.surname} {post.createdAt}
+                        <div className='PostSectionHeaderUser'>
+                            {post.owner.name} {post.owner.surname}
+                        </div>
+                        <div className='PostSectionHeaderDate'>
+                            {post.createdAt}
+                        </div>
                     </div>
+                    <div className='PostSectionHeaderTitle'>
+                        {post.title}
+                    </div>
+
                     {post.image && (
                         <div className='PostSectionImage'>
-                            <img src={post.image} alt={post.title} />
+                            <img src={post.image} alt={post.title}/>
                         </div>
                     )}
                     <div className='PostSectionContent'>
@@ -98,7 +107,6 @@ function PostSection() {
                             <div className={`CommentsList ${post.accordionOpen ? 'open' : ''}`}>
                                 {post.comments.list.map(comment => (
                                     <div key={comment.id} className='SingleComment'>
-                                        <div className='Comment'>{comment.text}</div>
                                         <div className='CommentingUser'>
                                             <div className='User'>
                                                 Commented by: {comment.author.name} {comment.author.surname}
@@ -107,6 +115,7 @@ function PostSection() {
                                                 Commented at: {comment.createdAt}
                                             </div>
                                         </div>
+                                        <div className='Comment'>{comment.text}</div>
                                     </div>
                                 ))}
                             </div>

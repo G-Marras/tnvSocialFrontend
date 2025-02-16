@@ -1,36 +1,39 @@
+import './HomePage.css'
+import './PostSection/PostSection.jsx'
+import ButtonGuestToTheLogin from "./Buttons/ButtonGuestToTheLogin.jsx"
+import ProfileSection from "./ProfileSection/ProfileSection.jsx"
+import ButtonCreationPost from "./Buttons/ButtonCreationPost.jsx"
+import PostSection from "./PostSection/PostSection.jsx"
 
 
-import './HomePage.css';
-import './PostSection/PostSection.jsx';
-import ButtonGuestToTheLogin from "./Buttons/ButtonGuestToTheLogin.jsx";
-import ProfileSection from "./ProfileSection/ProfileSection.jsx";
-import ButtonCreazionePost from "./Buttons/ButtonCreazionePost.jsx";
-import PostSection from "./PostSection/PostSection.jsx";
-
-
-const Loggato = false;
+const Logged = false
 
 
 function HomePage() {
     return (
         <div>
+            <nav className='navigationBar'>
 
-            {
-                Loggato ? <div>
+            </nav>
+
+            {Logged ?
+                <div>
                     <div className='HomepageHeader'>
                         <h1>Welcome back </h1>
                     </div>
                     <div className='FixedProfile'>
                         <ProfileSection/>
-                        <ButtonCreazionePost/>
+                        <ButtonCreationPost/>
                     </div>
 
-                </div> : <div>
+                </div>
+                :
+                <div>
                     <div className='HomepageHeader'>
                         <h1>Welcome</h1>
                     </div>
                     <div className='FixedProfile'>
-                        Per commentare e creare post
+                        To create a post & to write a comment
                         <br/>
                         <ButtonGuestToTheLogin></ButtonGuestToTheLogin>
                     </div>
@@ -41,6 +44,8 @@ function HomePage() {
                 <PostSection/>
             </div>
         </div>
+
+
 
 
     )

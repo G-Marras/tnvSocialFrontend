@@ -1,12 +1,12 @@
 import React from "react";
 import { useState } from "react";
-import './ButtonCreazionePost.css'
+import './ButtonCreationPost.css'
 
 import PostCreation from "../PostCreation/PostCreation.jsx";
 import PopupPostCreate from "../PopupPostCreation/PopupCreatePost.jsx";
 
 
-function ButtonCreazionePost() {
+function ButtonCreationPost() {
     const [buttonPopup, setButtonPopup] = React.useState(false);
 
     return (
@@ -20,4 +20,4 @@ function ButtonCreazionePost() {
     )
 }
 
-export default ButtonCreazionePost;
+export default ButtonCreationPost;
