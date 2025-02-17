@@ -15,18 +15,21 @@
     border-color: black;
     border-radius:10px;
     margin: 15px;
+
+}
+
+.HomePageContainer{
+    gap:20px;
+    padding-top: min(50px);
 }
 .HomepageMain{
     width:1000px;
-    height: 50000px;
+    height: auto;
     color:black;
-    background-color: white;
-    display:flex;
-    justify-content: start;
+    background-color: transparent;
+    display: flex;
+    flex-direction: column;
     align-items: start;
-    border-style: solid;
-    border-color: black;
-    border-radius:10px;
     margin:30px;
     font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
     line-height: 1.5;
@@ -34,17 +37,40 @@
 }
 
 .FixedProfile{
-    width:auto;
-    height:150px;
-    background-color:white;
-    padding:20px;
+    display:flex;
+    gap: 10px;
     align-items: center;
-    justify-content: center;
+    padding:40px;
+}
+
+.navigationBar{
+    display:flex;
+    flex-direction: row;
     position:fixed;
-    right:20px;
-    top:30px;
+    width:100%;
+    height:40px;
+    top:0;
+    left:0;
+    background-color:floralwhite;
+    border-color: black ;
+    border-width:1px ;
     border-style:solid;
-    border-color: black;
-    border-radius:10px;
-    margin: 15px;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 20px;
+}
+
+.MindShareLogo{
+    display:flex;
+    gap:10px;
+    align-items: center;
+    font-size: 50px;
+}
+
+.MindShareLogoPNG{
+    max-height: 70px;
+    max-width: 70px;
+    border-radius: 50%;
+    border: 1px solid black;
 }

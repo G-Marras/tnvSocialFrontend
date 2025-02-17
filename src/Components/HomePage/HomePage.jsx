@@ -1,46 +1,61 @@
-
-
-import './HomePage.css';
-import './PostSection/PostSection.jsx';
-import ButtonGuestToTheLogin from "./Buttons/ButtonGuestToTheLogin.jsx";
-import ProfileSection from "./ProfileSection/ProfileSection.jsx";
-import ButtonCreazionePost from "./Buttons/ButtonCreazionePost.jsx";
-import {Outlet} from "react-router-dom";
-
-
-const Loggato = true;
+import './HomePage.css'
+import './PostSection/PostSection.jsx'
+import TokenManagement from "./TokenManagement/TokenManagement.jsx";
+import ButtonGuestToTheLogin from "./Buttons/ButtonGuestToTheLogin.jsx"
+import ProfileSection from "./ProfileSection/ProfileSection.jsx"
+import ButtonCreationPost from "./Buttons/ButtonCreationPost.jsx"
+import PostSection from "./PostSection/PostSection.jsx"
+import {useState,useEffect} from "react";
 
 
 function HomePage() {
+
+    const [Logged,setLogged]=useState(null)
+
+    useEffect(() => {
+        setLogged(TokenManagement());
+    }, []);
+
+
+
     return (
-        <div>
+        <div className="HomePageContainer">
 
-            {
-                Loggato ? <div>
-                    <div className='HomepageHeader'>
-                        <h1>Welcome back </h1>
-                    </div>
-                    <div className='FixedProfile'>
-                        <ProfileSection/>
-                        <ButtonCreazionePost/>
-                    </div>
 
-                </div> : <div>
-                    <div className='HomepageHeader'>
-                        <h1>Welcome</h1>
-                    </div>
-                    <div className='FixedProfile'>
-                        Per commentare e creare post
-                        <br/>
-                        <ButtonGuestToTheLogin></ButtonGuestToTheLogin>
-                    </div>
+
+            {Logged ?
+                <div>
+                    <nav className='navigationBar'>
+                        <div className='MindShareLogo'>
+                            <img className='MindShareLogoPNG' src='MINDSHAREicon.PNG' alt='Logo' />
+                            MIND SHARE
+                        </div>
+                        <div className='FixedProfile'>
+                            <ProfileSection/>
+                            <ButtonCreationPost/>
+                        </div>
+                    </nav>
+                </div>
+                :
+                <div>
+                    <nav className='navigationBar'>
+                    <div className='MindShareLogo'>
+                        <img className='MindShareLogoPNG' src='MINDSHAREicon.PNG' alt='Logo' />
+                        MIND SHARE
+                        </div>
+
+                        <div className='FixedProfile'>
+                            To create a post & to write a comment
+                            <ButtonGuestToTheLogin></ButtonGuestToTheLogin>
+                        </div>
+                    </nav>
+
 
                 </div>
             }
             <div className='HomepageMain'>
-                Hello
+                <PostSection/>
             </div>
-            <Outlet />
         </div>
 
 
