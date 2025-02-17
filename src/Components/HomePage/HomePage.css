@@ -26,13 +26,10 @@
     width:1000px;
     height: auto;
     color:black;
-    background-color: white;
+    background-color: transparent;
     display: flex;
     flex-direction: column;
     align-items: start;
-    border-style: solid;
-    border-color: black;
-    border-radius:10px;
     margin:30px;
     font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
     line-height: 1.5;
@@ -57,6 +54,7 @@
     background-color:floralwhite;
     border-color: black ;
     border-width:1px ;
+    border-style:solid;
     align-items: center;
     justify-content: space-between;
     gap: 20px;
