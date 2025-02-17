@@ -1,8 +1,10 @@
 import {useState} from "react";
-import './AccediRegistrati.css'
-import {ConfermaRegistrazione} from "../ConfermaRegistrazione/ConfermaRegistrazione.jsx";
+import './LoginSignUp.css'
+import {Link, useNavigate} from "react-router-dom";
+import {useDispatch} from "react-redux";
+import {setUser} from "../../reducers/user.slices.js";
 
-export function AccediRegistrati() {
+export function LoginSignUp() {
 
     const [action, setAction] = useState("Registrati");
     const [password, setPassword] = useState("")
@@ -11,13 +13,20 @@ export function AccediRegistrati() {
     const [messageEmail, setMessageEmail] = useState("")
     const [displayName, setDisplayName] = useState("")
     const [displaySurname, setDisplaySurname] = useState("")
-    const [buttonPopup, setButtonPopup] = useState(true);
+    const [registrationMessage, setRegistrationMessage] = useState("")
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+
 
     const onLogin = (event) => {
         event.preventDefault()
         if (action === "Accedi") {
             handleValidationMail(email)
             handleValidationPassword(password)
+            if (handleValidationMail(email) === true && handleValidationPassword(password) === true){
+                loginUser(event)
+                navigate('/homepage')
+            }
         }else {
             setAction("Accedi")
         }
@@ -37,7 +46,6 @@ export function AccediRegistrati() {
 
     const handleValidationPassword = () => {
         const regExp = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[a-zA-Z0-9]{8,}$/
-        console.log(regExp.test(password))
         if (password === "") {
             setMessage("Password mancante")
             return false;
@@ -88,7 +96,7 @@ export function AccediRegistrati() {
 
     const createUser = async () => {
         try{
-           const request = await fetch('http://localhost:8000/user',{
+           const response = await fetch('http://localhost:8000/user',{
                method: 'POST',
                headers:{
                    'Content-Type': 'application/json'
@@ -100,17 +108,54 @@ export function AccediRegistrati() {
                    password:password
                }),
             });
-           if (request.ok){
-               throw new Error('Errore utente già registrato');
+            const data = await response.json();
+           if (response.ok){
+               setRegistrationMessage("Registrazione effettuata con successo, controlla la mail per confermarla")
+               return data
            }
-           
-           const data = await request.json();
-           return data;
         } catch (error){
-            console.error('Errore', error);
+            console.error('Error', error);
+            setRegistrationMessage("errore nella registrazione dell utente")
             throw error
         }
     }
+
+    const login = async () => {
+        try{
+            const response = await fetch('http://localhost:8000/user/login',{
+                method: 'POST',
+                headers:{
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    email:email,
+                    password:password,
+                }),
+            });
+            const data = await response.json();
+            if (response.ok){
+                return data
+            }
+        } catch (error){
+            console.error('Error', error);
+            throw error
+        }
+    }
+
+    const loginUser = async (event) => {
+        event.preventDefault();
+
+        const payload = {
+            email: email,
+            password: password,
+        }
+
+        const res = await login(payload)
+        if (res) {
+            dispatch(setUser(res));
+        }
+    }
+
 
 
     return (
@@ -121,14 +166,14 @@ export function AccediRegistrati() {
             </div>
             <div className="inputs"></div>
             {action === "Accedi" ? <div></div> :
-            <div className="input">
-                <input type="name" placeholder="Nome" onChange={nameChange} value={displayName}/>
-            </div>}
+                <div className="input">
+                    <input type="name" placeholder="Nome" onChange={nameChange} value={displayName}/>
+                </div>}
             <p></p>
             {action === "Accedi" ? <div></div> :
-            <div className="input">
-                <input type="surname" placeholder="Cognome" onChange={surnameChange} value={displaySurname}/>
-            </div>}
+                <div className="input">
+                    <input type="surname" placeholder="Cognome" onChange={surnameChange} value={displaySurname}/>
+                </div>}
             <p></p>
             <div className="input">
                 <input type="email" placeholder="Mail" onChange={mailChange} value={email}/>
@@ -139,11 +184,14 @@ export function AccediRegistrati() {
             </div>
             <p>{message}</p>
             {action === "Registrati" ? <div></div> :
-                <div className="forgot-password"><span>Password dimenticata?</span></div>}
+                <div className="forgot-password"><Link to={'/forgotpassword'}>Password dimenticata?</Link></div>}
             <div className="submit-container">
                 <button className={action === "Accedi" ? "submit gray" : "submit"} onClick={onRegistration}>Registrati
                 </button>
                 <button className={action === "Registrati" ? "submit gray" : "submit"} onClick={onLogin}>Accedi</button>
+            </div>
+            <div>
+                <p>{registrationMessage}</p>
             </div>
         </form>
     )
