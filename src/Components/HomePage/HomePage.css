@@ -20,6 +20,7 @@
 
 .HomePageContainer{
     gap:20px;
+    padding-top: min(50px);
 }
 .HomepageMain{
     width:1000px;
@@ -36,7 +37,6 @@
     font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
     line-height: 1.5;
     font-weight: 400;
-
 }
 
 .FixedProfile{
