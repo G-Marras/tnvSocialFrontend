@@ -62,3 +62,17 @@
     gap: 20px;
     padding: 20px;
 }
+
+.MindShareLogo{
+    display:flex;
+    gap:10px;
+    align-items: center;
+    font-size: 50px;
+}
+
+.MindShareLogoPNG{
+    max-height: 70px;
+    max-width: 70px;
+    border-radius: 50%;
+    border: 1px solid black;
+}

@@ -1,18 +1,23 @@
 import './HomePage.css'
 import './PostSection/PostSection.jsx'
+import TokenManagement from "./TokenManagement/TokenManagement.jsx";
 import ButtonGuestToTheLogin from "./Buttons/ButtonGuestToTheLogin.jsx"
 import ProfileSection from "./ProfileSection/ProfileSection.jsx"
 import ButtonCreationPost from "./Buttons/ButtonCreationPost.jsx"
 import PostSection from "./PostSection/PostSection.jsx"
-
-
-const Logged = true
-
-
-
+import {useState,useEffect} from "react";
 
 
 function HomePage() {
+
+    const [Logged,setLogged]=useState(null)
+
+    useEffect(() => {
+        setLogged(TokenManagement());
+    }, []);
+
+
+
     return (
         <div className="HomePageContainer">
 
@@ -22,7 +27,8 @@ function HomePage() {
                 <div>
                     <nav className='navigationBar'>
                         <div className='MindShareLogo'>
-                            Image here
+                            <img className='MindShareLogoPNG' src='MINDSHAREicon.PNG' alt='Logo' />
+                            MIND SHARE
                         </div>
                         <div className='FixedProfile'>
                             <ProfileSection/>
@@ -34,7 +40,8 @@ function HomePage() {
                 <div>
                     <nav className='navigationBar'>
                     <div className='MindShareLogo'>
-                            Image here
+                        <img className='MindShareLogoPNG' src='MINDSHAREicon.PNG' alt='Logo' />
+                        MIND SHARE
                         </div>
 
                         <div className='FixedProfile'>
