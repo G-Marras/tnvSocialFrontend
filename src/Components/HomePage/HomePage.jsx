@@ -38,7 +38,7 @@ function HomePage() {
                 </div>
             }
             <div className='HomepageMain'>
-                Qua si caricano i post vari
+                Hello
             </div>
             <Outlet />
         </div>
